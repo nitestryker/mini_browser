@@ -1,6 +1,7 @@
 import os
 import sys
 import time
+import platform
 
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
@@ -67,12 +68,18 @@ class Window(QMainWindow):
         self.browserWindow.lineedit.setText(self.browserWindow.browser.url().toString())
 
 if __name__ == '__main__':
-    
-    # first start tor 
-    dir = os.getcwd()
-    dir = dir + "/tor/tor.exe"
-    os.startfile(dir)
-    
+    # check platform if they are running linux lets assume they already have tor running
+    platform = platform.system()
+    if platform == "Windows":
+      # first start tor 
+      dir = os.getcwd()
+      dir = dir + "/tor/tor.exe"
+      os.startfile(dir)
+    if platform == "Linux":
+      #do nothing 
+      print "linux"
+      #add test port later
+      
     # give tor time to startup
     time.sleep(10)
     QNetworkProxy.setApplicationProxy(QNetworkProxy(QNetworkProxy.Socks5Proxy, "127.0.0.1", 9050))

@@ -12,8 +12,8 @@ base = None
 if sys.platform == "win32":
     base = "Win32GUI"
 
-setup(  name = "guifoo",
+setup(  name = "Mini Tor Browser",
         version = "0.1",
-        description = "My GUI application!",
+        description = "A minimalist web browser that connects through TOR",
         options = {"build_exe": {"includes": includes}},
         executables = [Executable("webBrowser.py", base=base)])
